@@ -1,0 +1,44 @@
+name: Release Windows Binaries
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Release tag (e.g. v0.4.0)"
+        required: true
+        default: "v0.4.0"
+
+permissions:
+  contents: write
+
+jobs:
+  build-portable:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup MinGW-w64
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: false
+          install: mingw-w64-x86_64-gcc mingw-w64-x86_64-binutils
+
+      - name: Build Zpix portable executable
+        shell: msys2 {0}
+        working-directory: windows
+        run: |
+          windres -c 65001 src/icon.rc -O coff -o icon.o
+          g++ -std=c++17 -DUNICODE -D_UNICODE -D_stdcall=__stdcall -Isrc -Ithird_party/ort/include -mwindows -O2 -s \
+            src/main.cpp src/util.cpp src/config.cpp src/annotate.cpp src/translate.cpp src/actions.cpp \
+            src/settings.cpp src/ui.cpp src/overlay.cpp src/pin.cpp src/ocr_paddle.cpp \
+            src/select_translate.cpp src/img_translate.cpp src/img_search.cpp icon.o \
+            -o Zpix.exe -lgdi32 -luser32 -lshell32 -lole32 -luuid -lmsimg32 -lgdiplus -lwinhttp -loleaut32 -lshlwapi -ldwmapi -loleacc
+
+      - name: Upload artifact to GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ inputs.tag }}
+          name: Zpix ${{ inputs.tag }}
+          files: windows/Zpix.exe

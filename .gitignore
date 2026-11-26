@@ -1,0 +1,31 @@
+# Build outputs & installers
+build/
+**/build/
+*.o
+*.obj
+*.exe
+*.dll
+*.onnx
+*.zip
+
+# Local configs, keys, logs & temp files
+config.ini
+*.log
+*.lnk
+.winrange.txt
+src/.winrange.txt
+windows/src/.winrange.txt
+cli_result.txt
+ocr_out.txt
+ocr_tmp*.png
+
+# Local test & probe scripts (not part of product source)
+tools/
+**/__pycache__/
+*.pyc
+
+# macOS / IDE metadata
+.DS_Store
+.vscode/
+.idea/
+*.user

@@ -1,0 +1,36 @@
+1 ICON "../src/app.ico"
+1 24 "../src/setup.manifest"
+101 RCDATA "Zpix.exe"
+102 RCDATA "../src/ocr.ps1"
+
+/* PP-OCRv5 本地识别资源：安装到 <安装目录>\model\ */
+201 RCDATA "model\\onnxruntime.dll"
+202 RCDATA "model\\det.onnx"
+203 RCDATA "model\\rec.onnx"
+204 RCDATA "model\\ppocr_keys.txt"
+
+1 VERSIONINFO
+FILEVERSION 0,4,0,0
+PRODUCTVERSION 0,4,0,0
+FILEOS 0x4L
+FILETYPE 0x1L
+{
+  BLOCK "StringFileInfo"
+  {
+    BLOCK "080404B0"
+    {
+      VALUE "CompanyName", "Zpix"
+      VALUE "FileDescription", "Zpix 截图 安装程序"
+      VALUE "FileVersion", "0.4.0"
+      VALUE "InternalName", "ZpixSetup"
+      VALUE "OriginalFilename", "ZpixSetup.exe"
+      VALUE "ProductName", "Zpix 截图"
+      VALUE "ProductVersion", "0.4.0"
+      VALUE "LegalCopyright", "MIT License"
+    }
+  }
+  BLOCK "VarFileInfo"
+  {
+    VALUE "Translation", 0x804, 1200
+  }
+}
