@@ -188,6 +188,14 @@ gh release create v0.4.0 build\ZpixSetup.exe build\Zpix.exe --title "Zpix v0.4.0
 
 ---
 
+## 🤝 推广致谢
+
+感谢以下社区平台在本项目推广与交流过程中给予的支持（排名不分先后）：
+
+- [LINUX DO](https://linux.do/)
+
+---
+
 ## 开源许可
 
 本项目基于 [MIT License](LICENSE) 开源。
